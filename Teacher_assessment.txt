@@ -1,0 +1,120 @@
+import java.util.Scanner;
+import java.io.FileWriter;
+import java.io.FileReader;
+public class classA {
+	Scanner sc=new Scanner(System.in);
+	void mth1() throws Exception
+	{
+		classA m1=new classA();
+		System.out.println("1)login as teacher"+"\n");
+		System.out.println("2)login as student"+"\n");
+		System.out.println("3)exit");
+		System.out.println("select your position 1 or 2");
+		
+		int A=sc.nextInt();
+		
+		if(A==1) {
+			m1.meth2();
+		}
+		 else if(A==2) {
+			System.out.println("you have login as Student");
+			System.out.println("heres urs question from ur Teacher");
+			m1.stuA();
+		}
+		 else if(A==3) {
+			return; 
+		 }
+		 else {
+			 System.out.println("Give correct input");
+		 }
+		System.out.println("do u want to continue \n give input in Y/y or N/n");
+		m1.meth4();
+		sc.close();
+		
+	}
+     void meth2() throws Exception
+     {
+    	 classA m2=new classA();
+    	 System.out.println("you are trying to login as a Teacher"+"\n"
+    				+"pls Enter your user Password" );
+    					String B=sc.next();		
+    					if("T".equals(B))
+    					{
+    					m2.teacQ();
+    					}
+    					else {
+    						System.out.println("wrong password");
+    						m2.meth2();
+    					}
+
+	}
+     void meth4() throws Exception
+     {
+    	 classA m4=new classA();
+    	 char end=sc.next().charAt(0);
+ 		if(end=='Y'||end=='y') {
+ 			m4.mth1();
+ 		}
+ 		else if(end=='n'||end=='N')
+ 		{
+ 			return;
+ 		}
+ 		else {
+ 			System.out.println("enter correct input in Y or N");
+ 			m4.meth4();
+ 		}
+     }
+     void stuA() throws Exception
+     {
+    	 FileReader sa= new FileReader("F:\\teacher Q\\question.txt");
+    	 System.out.println("you question from ur teacher"+"\n");
+    	 int i;
+    	 while((i=sa.read())!=-1) {
+    		 System.out.print( (char)i);
+    	 }
+    	 System.out.println("\n"+"enter your answer");
+    	   FileWriter st= new FileWriter("F:\\teacher Q\\question.txt",true);
+    	 st.write(sc.nextLine()+"\n");
+    	 st.close();
+    	 sa.close();
+    	 
+    	 
+     }
+     void teacQ() throws Exception
+     {
+    	 System.out.println("do u want to read the file y or n");
+     	char c=sc.next().charAt(0);
+     	if(c=='Y'||c=='y')
+     	{
+     		 FileReader sa= new FileReader("F:\\teacher Q\\question.txt");
+         	 int i;
+         	 while((i=sa.read())!=-1) {
+         		 System.out.print( (char)i);
+         	 }
+         	sa.close();
+     	}
+         	 else {
+         		 System.out.println("next");
+         	 }
+    	 System.out.println("enter ur question fr ur students");
+    	 
+    	FileWriter tq= new FileWriter("F:\\teacher Q\\question.txt",true);
+    	sc.nextLine();
+    	tq.write(sc.nextLine()+"\n");
+    	
+    	System.out.println("your question will be answered by the student");
+    	tq.close();
+    	
+    	
+    	}
+     
+     
+	public static void main(String[] args)throws Exception
+	{
+		
+		new classA().mth1();
+		System.out.println("------***Thank you***------");
+		
+		
+	}
+}
